@@ -123,12 +123,13 @@ fun formatTextMessageSender(
  */
 fun formatTextMessageMetadata(
     message: BitchatMessage,
-    timeFormatter: SimpleDateFormat = SimpleDateFormat(CHAT_TIMESTAMP_PATTERN, Locale.getDefault())
+    timeFormatter: SimpleDateFormat = SimpleDateFormat(CHAT_TIMESTAMP_PATTERN, Locale.getDefault()),
+    color: Color? = null,
 ): AnnotatedString {
     val builder = AnnotatedString.Builder()
     builder.pushStyle(
         SpanStyle(
-            color = Color.Gray.copy(alpha = 0.7f),
+            color = color ?: Color.Gray.copy(alpha = 0.7f),
             fontSize = (BASE_FONT_SIZE - 4).sp
         )
     )

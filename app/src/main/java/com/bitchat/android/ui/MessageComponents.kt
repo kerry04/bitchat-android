@@ -61,6 +61,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onSizeChanged
@@ -95,7 +96,6 @@ import com.bitchat.android.ui.theme.ChatVisualTokens
 import com.bitchat.android.ui.theme.LocalBitchatPalette
 import com.bitchat.android.ui.theme.MessageBodyTextStyle
 import com.bitchat.android.ui.theme.MessageSenderTextStyle
-import com.bitchat.android.ui.theme.colorForPeer
 import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -788,7 +788,7 @@ internal fun TextMessageLayout(
             linkColor = colorScheme.secondary,
             mentionPeerIdentities = mentionPeerIdentities,
             timeFormatter = timeFormatter,
-            includeTimestamp = !bubbles || !isSelf,
+            includeTimestamp = !bubbles,
         )
     }
 
@@ -865,14 +865,16 @@ internal fun TextMessageLayout(
 }
 
 /**
- * Classic messenger rendering of a text message: a rounded bubble that hugs its content, own
- * messages on the right and everyone else on the left, with the corner on the speaker's side
- * tightened into a subtle tail.
+ * Telegram-style rendering of a text message: a solid rounded bubble, own messages on the
+ * right and everyone else on the left, with the corner on the speaker's side tightened into
+ * a subtle tail.
  *
- * The bubble is washed with the author's stable peer colour — the same identity-derived colour
- * the `@name` label and mention chips already use — so the speaker stays identifiable at a
- * glance without touching any surface, background, or theme colour. Body text keeps the
- * standard `onSurface` tone; only the bubble shell carries the identity.
+ * Bubble colours follow Telegram's own palette rather than the author's peer colour: own
+ * bubbles are soft mint (#EFFFDE) in light mode and soft violet (#766AC8) in dark mode,
+ * while everyone else's are white / deep navy (#182533). The speaker stays identifiable via
+ * the peer-coloured name heading incoming bubbles, exactly like Telegram group chats.
+ * The timestamp (plus delivery checks on own private messages) rides bottom-right inside
+ * every bubble, dropping to its own line only when the last text line has no room.
  */
 @Composable
 private fun BubbleTextMessageLayout(
@@ -886,13 +888,22 @@ private fun BubbleTextMessageLayout(
     onLongPress: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val palette = LocalBitchatPalette.current
     val haptic = LocalHapticFeedback.current
     val context = LocalContext.current
+    val colorScheme = MaterialTheme.colorScheme
 
-    val authorColor = remember(message, isSelf, palette) {
-        if (isSelf) palette.accentOrange else colorForPeer(peerIdentityForMessage(message), palette)
+    // Telegram's bubble palette, resolved against the *rendered* theme so an explicit
+    // light/dark override is honoured the same as the system setting.
+    val isDark = colorScheme.background.luminance() < 0.5f
+    val bubbleColor = when {
+        isSelf && isDark -> Color(0xFF766AC8)
+        isSelf -> Color(0xFFEFFFDE)
+        isDark -> Color(0xFF182533)
+        else -> Color(0xFFFFFFFF)
     }
+    // Timestamp tint: Telegram dims it against the bubble fill.
+    val metaColor = if (isSelf && isDark) Color.White.copy(alpha = 0.7f)
+        else Color.Gray.copy(alpha = 0.7f)
 
     val corner = ChatVisualTokens.BubbleCornerRadius
     val tail = ChatVisualTokens.BubbleTailRadius
@@ -944,13 +955,8 @@ private fun BubbleTextMessageLayout(
                 modifier = Modifier
                     .align(if (isSelf) Alignment.CenterEnd else Alignment.CenterStart)
                     .widthIn(max = maxBubbleWidth)
-                    .border(
-                        width = 1.dp,
-                        color = authorColor.copy(alpha = ChatVisualTokens.BubbleBorderAlpha),
-                        shape = bubbleShape
-                    )
                     .background(
-                        color = authorColor.copy(alpha = ChatVisualTokens.BubbleBackgroundAlpha),
+                        color = bubbleColor,
                         shape = bubbleShape
                     )
                     .padding(
@@ -984,7 +990,7 @@ private fun BubbleTextMessageLayout(
                     }
 
                     Box(
-                        modifier = if (isSelf && metaPlan != null) {
+                        modifier = if (metaPlan != null) {
                             Modifier.width(with(density) { metaPlan!!.widthPx.toDp() })
                         } else {
                             Modifier
@@ -1025,23 +1031,24 @@ private fun BubbleTextMessageLayout(
                             onTextLayout = { bodyLayout = it },
                         )
 
-                        if (isSelf) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier
-                                    .align(Alignment.BottomEnd)
-                                    .onSizeChanged { clusterSize = it }
-                                    .graphicsLayer { alpha = if (metaPlan != null) 1f else 0f },
-                            ) {
-                                Text(
-                                    text = formatTextMessageMetadata(message, timeFormatter),
-                                    fontFamily = BitchatFontFamily,
-                                )
-                                if (message.isPrivate) {
-                                    message.deliveryStatus?.let { status ->
-                                        Spacer(Modifier.width(4.dp))
-                                        DeliveryStatusIcon(status = status)
-                                    }
+                        // Telegram-style meta cluster: the timestamp rides flush-right on the
+                        // body's last line (dropping below only when it has no room), with
+                        // delivery checks trailing it on own private messages.
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .onSizeChanged { clusterSize = it }
+                                .graphicsLayer { alpha = if (metaPlan != null) 1f else 0f },
+                        ) {
+                            Text(
+                                text = formatTextMessageMetadata(message, timeFormatter, metaColor),
+                                fontFamily = BitchatFontFamily,
+                            )
+                            if (isSelf && message.isPrivate) {
+                                message.deliveryStatus?.let { status ->
+                                    Spacer(Modifier.width(4.dp))
+                                    DeliveryStatusIcon(status = status)
                                 }
                             }
                         }
