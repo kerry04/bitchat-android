@@ -708,6 +708,21 @@ class MainActivity : OrientationAwareActivity() {
 
                 // Small delay to ensure mesh service is fully initialized
                 delay(500)
+
+                // Kenya edition: on first run, auto-join the #kenya public channel so the
+                // app never opens on an empty screen. Mesh protocol untouched.
+                try {
+                    val kenyaPrefs = getSharedPreferences("bitchat_kenya", MODE_PRIVATE)
+                    if (!kenyaPrefs.getBoolean("auto_joined_kenya", false)) {
+                        if (chatViewModel.joinChannel("kenya")) {
+                            Log.i("MainActivity", "Kenya edition: auto-joined #kenya channel")
+                        }
+                        kenyaPrefs.edit().putBoolean("auto_joined_kenya", true).apply()
+                    }
+                } catch (e: Exception) {
+                    Log.w("MainActivity", "Kenya edition: auto-join #kenya failed", e)
+                }
+
                 Log.i("MainActivity", "App initialization complete")
                 mainViewModel.updateOnboardingState(OnboardingState.COMPLETE)
             } catch (e: Exception) {

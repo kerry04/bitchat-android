@@ -5,7 +5,7 @@
     <string name="cashu_copy_token">Copy token</string>
     <string name="cashu_redeem_wallet">Redeem in wallet</string>
     <string name="cashu_redeem_web">Redeem on web</string>
-    <string name="app_name">bitchat</string>
+    <string name="app_name">Bitchat Kenya</string>
     <string name="permission_bluetooth_rationale">Bluetooth permission is required for peer-to-peer messaging without internet.</string>
     <string name="permission_location_rationale">Location permission is required to discover nearby devices via Bluetooth.</string>
     <string name="permission_notification_rationale">Notification permission is required to alert you of new messages.</string>
@@ -525,7 +525,7 @@
   <!-- Onboarding screens -->
   <string name="location_services_required">Location Services Required</string>
   <string name="privacy_first">Privacy First</string>
-  <string name="location_explanation">bitchat does NOT track your location.\n\nLocation services are required for Bluetooth scanning and for the Geohash chat feature.</string>
+  <string name="location_explanation">Your location stays on your phone — Bitchat Kenya never tracks or collects it.\n\nAndroid needs location services turned on for Bluetooth scanning, which is how the app finds nearby people without the internet.</string>
   <string name="location_needs_for">bitchat needs location services for:</string>
   <string name="location_needs_bullets">• Bluetooth device scanning\n• Discovering nearby users on mesh network\n• Geohash chat feature\n• No tracking or location collection</string>
   <string name="background_location_required_title">Background Location Recommended</string>
@@ -534,7 +534,7 @@
   <string name="background_location_settings_tip">When settings opens, choose "Allow all the time".</string>
   <string name="background_location_needs_for">bitchat uses background location for:</string>
   <string name="background_location_needs_bullets">- Scan for nearby devices while the app is closed\n- Reconnect after reboot\n- Keep the mesh running in the background</string>
-  <string name="background_location_privacy_note">We NEVER collect or store your location. Your privacy is safe.</string>
+  <string name="background_location_privacy_note">Your location never leaves your phone. It is only used on-device to find nearby people.</string>
   <string name="grant_background_location">Allow Background Location</string>
   <string name="skip_background_location">Continue without background location</string>
   <string name="open_location_settings">Open Location Settings</string>

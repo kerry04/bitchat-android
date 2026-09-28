@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kenya edition: Kiswahili strings, friendly tone.
+         Untranslated strings fall back to English automatically. -->
+
+    <string name="app_name">Bitchat Kenya</string>
+
+    <!-- Permissions -->
+    <string name="permission_bluetooth_rationale">Ruhusa ya Bluetooth inahitajika ili kutuma ujumbe bila intaneti.</string>
+    <string name="permission_location_rationale">Ruhusa ya eneo inahitajika ili kupata vifaa vilivyo karibu kupitia Bluetooth.</string>
+    <string name="permission_notification_rationale">Ruhusa ya arifa inahitajika ili kukujulisha ujumbe mpya unapofika.</string>
+
+    <!-- Chat basics -->
+    <string name="nickname_hint">Jina lako la utani</string>
+    <string name="message_hint">Andika ujumbe…</string>
+    <string name="channel_password_hint">Nenosiri</string>
+    <string name="join_channel">Jiunge</string>
+    <string name="leave_channel">Ondoka</string>
+    <string name="send_message">Tuma</string>
+    <string name="back">Rudi</string>
+    <string name="people">Watu</string>
+    <string name="channels">Chaneli</string>
+    <string name="online_users">Watu mtandaoni</string>
+    <string name="no_one_connected">Hakuna aliyeunganishwa bado</string>
+    <string name="emergency_clear_hint">Gonga mara tatu haraka ili kufuta data zote</string>
+    <string name="your_network">Mtandao wako</string>
+    <string name="nobody_around">Hakuna mtu karibu bado…\nWaite marafiki zako wajiunge!</string>
+    <string name="type_a_message_placeholder">Andika ujumbe…</string>
+    <string name="conversations">Mazungumzo</string>
+    <string name="online_conversations">MTANDAONI</string>
+    <string name="offline_conversations">NJE YA MTANDAO</string>
+    <string name="offline_not_in_mesh">Nje ya mtandao</string>
+    <string name="search_conversations">Tafuta mazungumzo</string>
+    <string name="no_conversations_yet">Mazungumzo yako ya faragha yataonekana hapa</string>
+
+    <!-- Common actions -->
+    <string name="delete">Futa</string>
+    <string name="clear">Futa</string>
+    <string name="undo">Tendua</string>
+    <string name="skip">Ruka</string>
+    <string name="retry">Jaribu tena</string>
+    <string name="continue_btn">Endelea</string>
+    <string name="grant_permissions">Ruhusu</string>
+    <string name="open_settings">Fungua Mipangilio</string>
+    <string name="try_again">Jaribu Tena</string>
+    <string name="mark_read">Weka kama imesomwa</string>
+    <string name="mark_unread">Weka kama haijasomwa</string>
+    <string name="pin_conversation">Bana mazungumzo</string>
+    <string name="unpin_conversation">Achilia mazungumzo</string>
+    <string name="mute_conversation">Nyamazisha mazungumzo</string>
+    <string name="unmute_conversation">Ondoa unyamazishaji</string>
+
+    <!-- Battery optimization -->
+    <string name="battery_optimization_detected">Kuweka Betri Kumegunduliwa</string>
+    <string name="battery_optimization_disabled">Kuweka Betri Kumezimwa</string>
+    <string name="battery_optimization_why_disable">Kwa nini uzime kuweka betri?</string>
+    <string name="battery_optimization_explanation">Bitchat Kenya inafanya kazi chinichini ili kudumisha muunganisho na vifaa vilivyo karibu. Kuweka betri kunaweza kukatisha muunganisho huu, na ujumbe ukachelewa au ukosekane.\n\nKuzima kuweka betri kunahakikisha ujumbe unafika kwa uhakika.</string>
+    <string name="battery_optimization_disable_button">Zima Kuweka Betri</string>
+    <string name="battery_optimization_note">Kumbuka: Unaweza kubadilisha hili baadaye kwenye Mipangilio ya Android &gt; Programu &gt; Bitchat Kenya &gt; Betri</string>
+    <string name="battery_optimization_success_message">Bitchat Kenya sasa itafanya kazi vizuri chinichini</string>
+    <string name="battery_optimization_benefits">• Ujumbe unafika kwa uhakika\n• Muunganisho unadumu\n• Programu inatuma ujumbe hata ukiwa huiangali\n• Hakuna kukatika ghafla</string>
+    <string name="battery_optimization_check_again">Angalia Tena</string>
+    <string name="battery_optimization_skip">Ruka kwa Sasa</string>
+    <string name="battery_optimization_continue">Endelea</string>
+    <string name="battery_optimization_detected_title">Kuweka Betri Kumegunduliwa</string>
+    <string name="battery_optimization_enabled_title">Kuweka Betri Kumewashwa</string>
+    <string name="battery_optimization_explanation_short">Bitchat Kenya inahitaji kuendelea kufanya kazi chinichini ili kudumisha muunganisho na vifaa vilivyo karibu. Kuweka betri kunaweza kukatisha muunganisho huu.</string>
+    <string name="benefits_of_disabling">Faida zake</string>
+    <string name="battery_benefits_short">• Ujumbe unafika kwa uhakika\n• Muunganisho unadumu\n• Hakuna kukatika ghafla</string>
+    <string name="disable_battery_optimization">Zima Kuweka Betri</string>
+    <string name="battery_optimization_disabled_title">Kuweka Betri Kumezimwa</string>
+
+    <!-- Notifications -->
+    <string name="notification_active_peers_title">Kuna watu karibu!</string>
+    <string name="notification_active_peers_one">Mtu 1 yuko karibu</string>
+    <string name="notification_active_peers_many">Watu %1$d wako karibu</string>
+    <string name="notification_new_messages">Ujumbe Mipya</string>
+    <string name="notification_private_message">Ujumbe mpya wa faragha</string>
+    <string name="notification_content_hidden">Fungua Bitchat Kenya kuusoma</string>
+    <string name="notification_reply">Jibu</string>
+    <string name="notification_mark_read">Weka kama imesomwa</string>
+    <string name="notification_messages_from_people">Ujumbe %1$d kutoka kwa watu %2$d</string>
+    <string name="notification_joined_conversation">%1$s amejiunga na mazungumzo</string>
+
+    <!-- Mesh background service -->
+    <string name="mesh_service_channel_name">Huduma ya Mtandao</string>
+    <string name="mesh_service_channel_desc">Huudumisha mtandao wa Bluetooth ukiwa chinichini</string>
+    <string name="mesh_service_notification_content">Mtandao unaendelea — watu %1$d</string>
+
+    <!-- Onboarding -->
+    <string name="location_services_required">Huduma za Eneo Zinahitajika</string>
+    <string name="privacy_first">Faragha Kwanza</string>
+    <string name="location_explanation">Bitchat Kenya haifuatilii eneo lako — linabaki kwenye simu yako.\n\nHuduma za eneo zinahitajika kwa sababu Android inazihitaji ili kuchunguza Bluetooth. Ndiyo njia pekee ya kuwapata watu walio karibu bila intaneti.</string>
+    <string name="location_needs_for">Bitchat Kenya inahitaji huduma za eneo kwa ajili ya:</string>
+    <string name="location_needs_bullets">• Kuchunguza vifaa vya Bluetooth vilivyo karibu\n• Kuwapata watu walio karibu kwenye mtandao\n• Kipengele cha chaneli za maeneo\n• Hatukusanyi wala kuhifadhi eneo lako</string>
+    <string name="background_location_required_title">Eneo Chinichini Inapendekezwa</string>
+    <string name="background_location_required_subtitle">Si lazima, lakini inaboresha muunganisho</string>
+    <string name="background_location_explanation">Android inapendekeza ruhusa hii ili Bitchat Kenya iweze kuchunguza vifaa vilivyo karibu hata programu ikiwa imefungwa. Hii huuweka mtandao hai hata baada ya kuwasha upya simu.</string>
+    <string name="background_location_settings_tip">Mipangilio ikifunguka, chagua \"Ruhusu kila wakati\".</string>
+    <string name="background_location_privacy_note">Eneo lako halitoki kwenye simu yako. Linatumika tu kutafuta watu walio karibu.</string>
+    <string name="grant_background_location">Ruhusu Eneo Chinichini</string>
+    <string name="skip_background_location">Endelea bila hiyo</string>
+    <string name="open_location_settings">Fungua Mipangilio ya Eneo</string>
+    <string name="check_again">Angalia Tena</string>
+    <string name="bluetooth_required">Bluetooth Inahitajika</string>
+    <string name="bluetooth_needs_for">Bitchat Kenya inahitaji Bluetooth ili:</string>
+    <string name="bluetooth_needs_bullets">• Kuwapata watu walio karibu\n• Kuunda mtandao wa ujumbe\n• Kutuma na kupokea ujumbe\n• Kufanya kazi bila intaneti wala seva</string>
+    <string name="enable_bluetooth">Washa Bluetooth</string>
+    <string name="bluetooth_not_supported">Bluetooth Haitumiki</string>
+    <string name="bluetooth_unsupported_explanation">Kifaa hiki hakitumii Bluetooth Low Energy (BLE), ambayo inahitajika ili Bitchat Kenya ifanye kazi.\n\nBitchat Kenya inahitaji BLE kuunda mitandao na kuwasiliana na watu walio karibu bila intaneti.</string>
+    <string name="privacy_protected">Faragha Yako Imelindwa</string>
+    <string name="privacy_bullets">• Hakuna ufuatiliaji wala ukusanyaji wa data\n• Mazungumzo ya Bluetooth yako nje ya intaneti kabisa</string>
+    <string name="permissions_header">Ruhusa</string>
+    <string name="location_tracking_warning">Bitchat Kenya haifuatilii eneo lako</string>
+    <string name="initializing_mesh_network">Inaandaa mtandao…</string>
+    <string name="setting_up_bluetooth">Inaandaa muunganisho wa Bluetooth…</string>
+    <string name="should_take_seconds">Hii itachukua sekunde chache tu</string>
+    <string name="setup_not_complete">Usanidi Haujakamilika</string>
+</resources>
