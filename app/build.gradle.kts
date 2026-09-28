@@ -30,8 +30,8 @@ android {
         applicationId = "com.bitchat.droid"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
-        versionCode = 39
-        versionName = "2.0.2"
+        versionCode = 40
+        versionName = "2.0.2-kenya.1"
         buildConfigField(
             "String",
             "GITHUB_RELEASE_CERT_SHA256",
@@ -51,6 +51,21 @@ android {
         includeInBundle = false
     }
 
+    // Release signing for the Incognito Kenya premium build. Credentials come
+    // from environment variables (CI secrets); when absent the release stays
+    // unsigned, matching upstream's reproducible-build flow.
+    val releaseKeystorePath = System.getenv("INCOGNITO_KEYSTORE_PATH")
+    if (releaseKeystorePath != null) {
+        signingConfigs {
+            create("incognitoRelease") {
+                storeFile = file(releaseKeystorePath)
+                storePassword = System.getenv("INCOGNITO_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("INCOGNITO_KEY_ALIAS")
+                keyPassword = System.getenv("INCOGNITO_KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         debug {
             ndk {
@@ -65,6 +80,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.findByName("incognitoRelease")
             vcsInfo {
                 // BUILDINFO.json and attestations carry the verified commit
                 // without depending on host-specific Git/worktree paths.
