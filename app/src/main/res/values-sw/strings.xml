@@ -116,4 +116,8 @@
     <string name="setting_up_bluetooth">Inaandaa muunganisho wa Bluetooth…</string>
     <string name="should_take_seconds">Hii itachukua sekunde chache tu</string>
     <string name="setup_not_complete">Usanidi Haujakamilika</string>
+    <string name="about_language">Lugha</string>
+    <string name="about_app_language">Lugha ya programu</string>
+    <string name="about_system_default">Chaguo-msingi la mfumo</string>
+    <string name="about_select_language">Chagua lugha</string>
 </resources>
